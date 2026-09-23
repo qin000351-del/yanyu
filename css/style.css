@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    岩屿石英砖 ROCKISLE — Global Stylesheet
    Inspired by Cotto d'Este: extreme minimalism, generous whitespace,
    natural low-saturation palette, architectural composure.
@@ -1148,27 +1148,25 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   z-index: 5;
 }
 .series-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
+  width: 8px;
+  height: 1px;
+  background: rgba(255,255,255,0.22);
   border: none;
   padding: 0;
   cursor: pointer;
   position: relative;
-  transition: background 0.4s var(--ease), transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  transition: width 0.6s cubic-bezier(0.22,1,0.36,1), background 0.5s var(--ease);
   transform-origin: center center;
 }
 .series-dot.is-active {
-  background: #ffffff;
-  transform: scale(1.5);
-  box-shadow: 0 0 10px rgba(255,255,255,0.55);
+  width: 28px;
+  background: rgba(255,255,255,0.85);
 }
-.series-dot:hover:not(.is-active) { background: rgba(255,255,255,0.75); transform: scale(1.2); }
+.series-dot:hover:not(.is-active) { background: rgba(255,255,255,0.5); }
 
 /* ---------- Project Narrative ---------- */
 .split {
@@ -2271,7 +2269,6 @@ h1, h2, h3, h4 {
   .promise { grid-template-columns: 1fr; }
   .hero__title { font-size: 2.2rem; }
   .display { font-size: 2.3rem; }
-  .series-card { flex-basis: 60vw; }
 }
 
 /* Series carousel — responsive split layout */
@@ -2283,18 +2280,237 @@ h1, h2, h3, h4 {
     min-height: 100vh;
   }
   .series-carousel__left {
-    padding: clamp(5rem, 12vw, 7rem) var(--gutter) clamp(2rem, 5vw, 3rem);
+    padding: clamp(4.5rem, 10vw, 6rem) var(--gutter) clamp(1.5rem, 3vw, 2.5rem);
     max-width: 100%;
   }
   .series-carousel__right {
-    padding: 0 var(--gutter) clamp(5rem, 10vw, 7rem);
+    padding: 0 var(--gutter) clamp(3.5rem, 8vw, 5.5rem);
   }
 }
-@media (max-width: 640px) {
-  .series-carousel__left .section-title { font-size: 2rem; }
-  .series-active-info__name { font-size: 1.8rem; }
+
+/* Series carousel — mobile premium layout */
+@media (max-width: 768px) {
+  .series-carousel {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    min-height: 100dvh;
+    height: auto;
+  }
+  .series-carousel__left {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem max(1.2rem, env(safe-area-inset-left)) 2rem max(1.2rem, env(safe-area-inset-right));
+    max-width: 100%;
+  }
+  .series-carousel__left .section-title {
+    white-space: normal;
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+  }
+  .series-carousel__left .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+  }
+  .series-active-info {
+    padding-top: 1.4rem;
+  }
+  .series-active-info__index {
+    font-size: 0.66rem;
+    letter-spacing: 0.24em;
+    margin-bottom: 0.9rem;
+  }
+  .series-active-info__name {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+  }
+  .series-active-info__sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    margin-top: 0.35rem;
+  }
+  .series-active-info__desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    max-width: 30ch;
+    margin-top: 1.1rem;
+  }
+  .series-active-info__btn {
+    font-size: 0.72rem;
+    padding: 0.75rem 1.3rem 0.75rem 1.1rem;
+    margin-top: 1.6rem;
+  }
+
+  .series-carousel__right {
+    flex: 0 0 auto;
+    padding: 0 max(1.2rem, env(safe-area-inset-left)) 3.5rem max(1.2rem, env(safe-area-inset-right));
+  }
+
+  .series-overlay {
+    background: linear-gradient(180deg,
+      rgba(20,18,16,0.75) 0%,
+      rgba(20,18,16,0.4) 30%,
+      rgba(20,18,16,0.35) 55%,
+      rgba(20,18,16,0.7) 80%,
+      rgba(20,18,16,0.85) 100%);
+  }
+
+  .series-card {
+    flex-basis: 68vw;
+    max-width: 200px;
+  }
+  .series-card__media { aspect-ratio: 4 / 5; }
+  .series-card__name { font-size: 0.82rem; }
+  .series-card__name small { font-size: 0.52rem; }
+  .series-card__desc { font-size: 0.72rem; }
+
   .series-arrow { width: 38px; height: 38px; }
-  .series-track { gap: 0.7rem; padding: 1.2rem 0; }
+  .series-track { gap: 0.8rem; padding: 1.2rem 0; }
+
+  .series-dots { bottom: 14px; gap: 12px; }
+  .series-dot { padding: 10px 4px; margin: -10px -4px; }
+}
+
+@media (max-width: 560px) {
+  .series-carousel__left .section-title { font-size: 1.7rem; }
+  .series-active-info__name { font-size: 1.5rem; }
+  .series-active-info__desc { font-size: 0.82rem; max-width: 28ch; }
+  .series-active-info__btn { font-size: 0.68rem; padding: 0.7rem 1.2rem 0.7rem 1rem; }
+  .series-card { flex-basis: 72vw; }
+  .series-card__name { font-size: 0.78rem; }
+  .series-card__desc { font-size: 0.68rem; }
+  .series-arrow { width: 34px; height: 34px; }
+  .series-track { gap: 0.6rem; padding: 1rem 0; }
+}
+
+@media (max-width: 390px) {
+  .series-carousel__left .section-title { font-size: 1.5rem; }
+  .series-active-info__name { font-size: 1.35rem; }
+  .series-active-info__desc { font-size: 0.78rem; }
+  .series-card { flex-basis: 78vw; }
+  .series-carousel__left { padding-top: 3.5rem; }
+}
+
+/* ---------- Mobile Responsive Enhancements ---------- */
+@media (max-width: 768px) {
+  html { -webkit-text-size-adjust: 100%; }
+  body { -webkit-tap-highlight-color: transparent; }
+  a, button { touch-action: manipulation; }
+
+  /* Dynamic viewport height for mobile browsers */
+  .hero {
+    height: 100svh;
+    height: 100dvh;
+    min-height: 520px;
+  }
+
+  /* Reduce section padding on mobile */
+  .section {
+    padding-top: clamp(3rem, 7vw, 4.5rem);
+    padding-bottom: clamp(3rem, 7vw, 4.5rem);
+  }
+
+  /* Container side padding */
+  .container {
+    padding-left: clamp(1.2rem, 4vw, 1.8rem);
+    padding-right: clamp(1.2rem, 4vw, 1.8rem);
+  }
+
+  /* Nav — safe area insets for notch */
+  .nav {
+    min-height: 56px;
+    padding-left: max(clamp(1.2rem, 4vw, 1.8rem), env(safe-area-inset-left));
+    padding-right: max(clamp(1.2rem, 4vw, 1.8rem), env(safe-area-inset-right));
+  }
+  .nav__logo { font-size: 14px; }
+  .nav__logo small { font-size: 7px; letter-spacing: 2px; }
+
+  /* Hero — allow text wrapping, fix CTA visibility */
+  .hero__title {
+    white-space: normal;
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+  .hero__sub { font-size: 0.92rem; max-width: 30ch; }
+  .hero__inner {
+    padding: 4.5rem clamp(1.2rem, 4vw, 1.8rem) 5rem;
+  }
+  .hero__cta {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: clamp(2rem, 5vh, 3rem);
+    margin-top: 0;
+    text-align: center;
+    z-index: 3;
+  }
+
+  /* Intro statement */
+  .display { font-size: clamp(1.9rem, 6.5vw, 2.6rem); }
+
+  /* Marquee */
+  .marquee { padding: 1rem 0; }
+  .marquee__item { font-size: 0.68rem; letter-spacing: 0.26em; }
+  .marquee__track { gap: 2.5rem; }
+
+  /* Promise grid — 2 columns on tablet/mobile */
+  .promise { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; }
+  .promise__icon { width: 44px; height: 44px; margin-bottom: 1.2rem; }
+
+  /* Footer — safe area insets */
+  .footer {
+    padding-left: max(1.2rem, env(safe-area-inset-left));
+    padding-right: max(1.2rem, env(safe-area-inset-right));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+  .footer__social a { width: 34px; height: 34px; }
+  .footer__nav { gap: 1.4rem; flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 560px) {
+  /* Hero */
+  .hero__title { font-size: 1.85rem; }
+  .hero__sub { font-size: 0.88rem; max-width: 28ch; }
+  .hero__inner { padding-top: 4rem; padding-bottom: 4.5rem; }
+
+  /* Intro */
+  .display { font-size: 1.75rem; }
+  .lead { font-size: 0.92rem; }
+
+  /* Promise — single column */
+  .promise { grid-template-columns: 1fr; gap: 2.5rem; }
+  .promise__title { font-size: 1rem; }
+  .promise__text { font-size: 0.84rem; }
+
+  /* Buttons */
+  .btn-ghost { font-size: 0.7rem; padding: 0.75rem 1.3rem; }
+  .btn-line { font-size: 0.72rem; }
+
+  /* Footer */
+  .footer__social { gap: 0.8rem; }
+  .footer__social a { width: 32px; height: 32px; }
+  .footer__brand { font-size: 0.95rem; }
+  .footer__motto { font-size: 0.82rem; letter-spacing: 0.3em; }
+  .footer__bottom { font-size: 0.66rem; }
+
+  /* Mobile menu adjustments */
+  .mobile-menu { padding: 4rem 1.2rem 2rem; }
+  .mobile-menu__item { font-size: 20px; letter-spacing: 1.5px; }
+  .mobile-menu__nav { gap: 24px; }
+  .mobile-menu__sublink { font-size: 13px; letter-spacing: 1.2px; }
+  .mobile-menu__sub { gap: 12px; }
+}
+
+@media (max-width: 390px) {
+  .hero__title { font-size: 1.6rem; }
+  .hero__sub { font-size: 0.82rem; }
+  .display { font-size: 1.55rem; }
+  .section-title { font-size: 1.45rem; }
+  .eyebrow { font-size: 0.6rem; letter-spacing: 0.22em; }
+  .nav__logo { font-size: 13px; }
+  .mobile-menu__item { font-size: 18px; }
+  .promise__icon { width: 40px; height: 40px; }
+  .footer__brand { font-size: 0.88rem; }
+  .footer__motto { font-size: 0.76rem; }
+  .footer__nav { gap: 1rem; }
 }
 
 /* reduced motion */
